@@ -3,8 +3,11 @@
 
 ;; ---------------------
 ;; -- Global Settings --
-;; ---------------------
+;; ---------------
+;; (load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
+
 (add-to-list 'load-path "~/.emacs.d")
+;(require 'semantic/ia)
 (require 'cl)
 (require 'ido)
 (require 'ffap)
@@ -15,9 +18,11 @@
 (require 'whitespace)
 (require 'dired-x)
 (require 'compile)
+(require 'dirtree)
 (ido-mode t)
-(menu-bar-mode -1)
+(menu-bar-mode 1)
 (global-linum-mode 1)
+(show-paren-mode 1)
 ;(normal-erase-is-backspace-mode 1)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
@@ -44,7 +49,24 @@
 
 ;; AutoComplete
 (require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories (expand-file-name
+             "~/.emacs.d/elpa/auto-complete-1.4/dict"))
 (ac-config-default)
+
+(autoload 'run-prolog "prolog" "Start a Prolog sub-process." t)
+(autoload 'prolog-mode "prolog" "Major mode for editing Prolog programs." t)
+(autoload 'mercury-mode "prolog" "Major mode for editing Mercury programs." t)
+(setq prolog-system 'swi)
+(setq auto-mode-alist (append '(("\\.pl$" . prolog-mode)
+				("\\.m$" . mercury-mode))
+			      auto-mode-alist))
+
+;(semantic-mode 1)
+;(global-ede-mode 1)
+;(semantic-load-enable-code-helpers)
+;(global-srecode-minor-mode 1)
+;(global-semantic-idle-summary-mode 1)
+;(global-semantic-show-unmatched-syntax-mode t)
 
 ;; Enable flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -66,11 +88,13 @@
 (global-set-key "\M-d" 'delete-word)
 (global-set-key "\M-h" 'backward-delete-word)
 (global-set-key "\M-u" 'zap-to-char)
+(global-set-key "\C-c%" 'goto-match-paren)
 
-(autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t) 
+(autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
 (autoload 'inf-ruby-setup-keybindings "inf-ruby" "" t) 
 (eval-after-load 'ruby-mode '(add-hook 'ruby-mode-hook 'inf-ruby-setup-keybindings))
 (inf-ruby-switch-setup)
+(auto-indent-global-mode)
 ;; ---------------------------
 ;; -- JS Mode configuration --
 ;; ---------------------------

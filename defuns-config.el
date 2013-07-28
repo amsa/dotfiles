@@ -1,6 +1,7 @@
 ;; --------------------
 ;; -- Global defuns ---
 ;; --------------------
+;;; Code:
 (defun next5()
   (interactive)
   (next-line 5))
@@ -8,6 +9,14 @@
 (defun prev5()
   (interactive)
   (previous-line 5))
+
+(defun goto-match-paren (arg)
+  "Go to the matching parenthesis if on parenthesis, otherwise insert %.
+  vi style of % jumping to matching brace."
+  (interactive "p")
+  (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
+        ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
+        (t (self-insert-command (or arg 1)))))
 
 (defun delete-word (arg)
   "Delete characters forward until encountering the end of a word.
