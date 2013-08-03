@@ -10,6 +10,24 @@
   (interactive)
   (previous-line 5))
 
+(defun my-change-number-at-point (change)
+  (let ((number (number-at-point))
+	(point (point)))
+    (when number
+      (progn
+	(forward-word)
+	(search-backward (number-to-string number))
+	(replace-match (number-to-string (funcall change number)))
+	(goto-char point)))))
+(defun increment-number-at-point ()
+  "Increment number at point like vim's C-a"
+  (interactive)
+  (my-change-number-at-point '1+))
+(defun decrement-number-at-point ()
+  "Decrement number at point like vim's C-x"
+  (interactive)
+    (my-change-number-at-point '1-))
+
 (defun goto-match-paren (arg)
   "Go to the matching parenthesis if on parenthesis, otherwise insert %.
   vi style of % jumping to matching brace."

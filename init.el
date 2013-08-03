@@ -4,11 +4,11 @@
 ;; ---------------------
 ;; -- Global Settings --
 ;; ---------------
-;; (load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
+;;; Code:
 
 (add-to-list 'load-path "~/.emacs.d")
 ;(require 'semantic/ia)
-(require 'cl)
+;(require 'cl)
 (require 'ido)
 (require 'ffap)
 (require 'uniquify)
@@ -18,11 +18,11 @@
 (require 'whitespace)
 (require 'dired-x)
 (require 'compile)
-(require 'dirtree)
 (ido-mode t)
 (menu-bar-mode 1)
 (global-linum-mode 1)
 (show-paren-mode 1)
+(speedbar 1)
 ;(normal-erase-is-backspace-mode 1)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
@@ -32,6 +32,15 @@
 (setq show-trailing-whitespace t)
 (setq suggest-key-bindings t)
 (setq vc-follow-symlinks t)
+
+(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+      backup-by-copying t    ; Don't delink hardlinks
+      version-control t      ; Use version numbers on backups
+      delete-old-versions t  ; Automatically delete excess backups
+      kept-new-versions 10   ; how many of the newest versions to keep
+      kept-old-versions 2    ; and how many of the old
+      )
+
 
 ;Marmalade
 (require 'package)
@@ -77,6 +86,8 @@
 (load "defuns-config.el")
 (fset 'align-equals "\C-[xalign-regex\C-m=\C-m")
 (global-set-key "\M-=" 'align-equals)
+(global-set-key (kbd "C-c a") 'increment-number-at-point)
+(global-set-key (kbd "C-c x") 'decrement-number-at-point)
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-c;" 'comment-or-uncomment-region)
 (global-set-key "\M-n" 'next5)
@@ -100,3 +111,4 @@
 ;; ---------------------------
 (add-to-list 'load-path "~/.emacs.d/js")
 (load "js-config.el")
+(load-file "~/.emacs.d/ProofGeneral/generic/proof-site.el")
