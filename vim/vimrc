@@ -1,0 +1,160 @@
+set nocompatible
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" original repos on github
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-session'
+Bundle 'tsaleh/vim-matchit'
+Bundle 'tpope/vim-fugitive'
+Bundle 'myusuf3/numbers.vim'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-surround'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'honza/snipmate-snippets'
+Bundle 'garbas/vim-snipmate'
+Bundle 'c9s/bufexplorer'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'tpope/vim-rails.git'
+Bundle 'vexxor/phpdoc.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'vim-ruby/vim-ruby'
+"Bundle 'ervandew/supertab'
+
+" vim-scripts repos
+"Bundle 'PIV'
+"Bundle 'Command-T'
+"Bundle 'FuzzyFinder'
+"Bundle 'HTML-AutoCloseTag'
+Bundle 'VimCalc'
+Bundle 'FastGrep'
+Bundle 'phpcomplete.vim'
+Bundle 'xml.vim'
+Bundle 'vim-go'
+Bundle 'camelcasemotion'
+Bundle 'L9'
+Bundle 'preview'
+Bundle 'taglist.vim'
+" non github repos
+"Bundle 'git://git.wincent.com/command-t.git'
+
+filetype plugin indent on     " required!
+"let g:Powerline_symbols = 'fancy'
+"source ~/.vim/bundle/powerline/build/lib/powerline/ext/vim/source_plugin.vim
+"python from powerline.ext.vim import source_plugin; source_plugin()
+"
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
+syntax on
+set pastetoggle=<F3>
+set ssop-=options
+set encoding=utf-8
+set history=512
+set undolevels=512
+set colorcolumn=80
+set laststatus=2
+set visualbell
+set noerrorbells
+set wrapscan
+set noswapfile
+set nobackup
+set autoindent
+set copyindent
+set showmatch
+set ruler
+set hlsearch
+set incsearch
+set number
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set ignorecase
+set smartcase
+set smarttab
+set expandtab
+set modelines=0
+set backspace=start,indent,eol
+set t_Co=256
+
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
+
+"let g:EasyMotion_leader_key = '<Leader>'
+
+let g:DisableAutoPHPFolding=1
+let Tlist_Ctags_Cmd='/usr/bin/ctags'
+let b:match_ignorecase = 1
+
+let g:session_autosave = 'no'
+
+map <F2> :call FastGrep()<CR> 
+
+"Shortcuts
+nmap <S-Tab> :TlistToggle<CR>
+map <Bar> :NERDTreeToggle<CR>
+"map <F4> :BufExplorerVerticalSplit<CR>
+"vmap <F6> :fold<CR>
+map <C-m> :set rnu<CR>
+map <C-b> :set nu<CR>
+map <C-c> :nohlsearch<CR>
+"map <C-S-l> :set rl<CR>
+"map <C-S-k> :set norl<CR>
+map <C-l> :tabn<CR>
+map <C-h> :tabp<CR>
+map <C-n> :tabnew<CR>
+"map <C-x> :tabclose<CR>
+map <CR> :NumbersToggle<CR> 
+map <leader>c :Calc<CR> 
+
+cmap w!! %!sudo tee > /dev/null %
+nnoremap ; :
+
+"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+"autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html,xml set listchars-=tab:>.
+
+au BufRead,BufNewFile *.php		set indentexpr= | set smartindent
+".phps files handled like .php
+au BufRead,BufNewFile *.phps		set filetype=php
+
+"ruby configs
+"autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+
+"improve autocomplete menu color
+highlight Pmenu ctermbg=blue ctermfg=black gui=bold
+
+"Use filetype plugins, e.g. for PHP
+"autocmd FileType php noremap <C-M> :w! <CR>:!/usr/bin/php %<CR>
+inoremap <C-K> <ESC> :call PhpDocSingle()<CR>
+nnoremap <C-K> :call PhpDocSingle()<CR>
+vnoremap <C-K> :call PhpDocRange()<CR>
+let g:pdv_cfg_Author = "Amin Saeedi, <amin.w3dev@gmail.com>"
+"let g:pdv_cfg_Copyright = "2011 Hippo Project"
+"let g:pdv_cfg_Package = "Hippo Server"
+"let g:pdv_cfg_License = ""
+let g:pdv_cfg_Version = "0.0.1"

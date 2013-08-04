@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/Users/Amin/Documents/E-Books/Java/Android/Android Programmers - an App-Driven Approach/androidfp_examples/TipCalculator'
+let g:netrw_dirhist_2='/Library/WebServer/Documents/rails/offer/core'
+let g:netrw_dirhist_3='/Users/Amin/.oh-my-zsh/plugins/ruby'
+let g:netrw_dirhist_4='/Users/Amin/.vim/vam/vim-addon-manager'
+let g:netrw_dirhist_5='/Users/Amin/.vim/autoload'
+let g:netrw_dirhist_6='/Library/WebServer/Documents/openstack/src'
+let g:netrw_dirhist_7='/Users/Amin/Courses/Coursera/SaaS/Homework/hw4/hw4_rottenpotatoes/spec'
+let g:netrw_dirhist_8='/Users/Amin/NetBeansProjects/playn-samples/cute/core/src/main/java/playn/sample/cute/core'
+let g:netrw_dirhist_9='/Users/Amin/NetBeansProjects/playn-samples/hello/core/src/main/java/playn/sample/hello/core'
