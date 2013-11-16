@@ -20,29 +20,28 @@
 (require 'dired-x)
 (require 'compile)
 (require 'go-mode-load)
-
-(add-hook 'after-init-hook 'global-company-mode)
-(require 'company-go)                                ; load company mode go backend
-(setq company-tooltip-limit 20)                      ; bigger popup window
-(setq company-minimum-prefix-length 0)               ; autocomplete right after '.'
-(setq company-idle-delay .3)                         ; shorter delay before autocompletion popup
-(setq company-echo-delay 0)                          ; removes annoying blinking
-(setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
-(custom-set-faces
- '(company-preview
-   ((t (:foreground "darkgray" :underline t))))
- '(company-preview-common
-   ((t (:inherit company-preview))))
- '(company-tooltip
-   ((t (:background "lightgray" :foreground "black"))))
- '(company-tooltip-selection
-   ((t (:background "steelblue" :foreground "white"))))
- '(company-tooltip-common
-   ((((type x)) (:inherit company-tooltip :weight bold))
-    (t (:inherit company-tooltip))))
- '(company-tooltip-common-selection
-   ((((type x)) (:inherit company-tooltip-selection :weight bold))
-    (t (:inherit company-tooltip-selection)))))
+;(add-hook 'after-init-hook 'global-company-mode)
+;(require 'company-go)                                ; load company mode go backend
+;(setq company-tooltip-limit 20)                      ; bigger popup window
+;(setq company-minimum-prefix-length 0)               ; autocomplete right after '.'
+;(setq company-idle-delay .3)                         ; shorter delay before autocompletion popup
+;(setq company-echo-delay 0)                          ; removes annoying blinking
+;(setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+;(custom-set-faces
+ ;'(company-preview
+   ;((t (:foreground "darkgray" :underline t))))
+ ;'(company-preview-common
+   ;((t (:inherit company-preview))))
+ ;'(company-tooltip
+   ;((t (:background "lightgray" :foreground "black"))))
+ ;'(company-tooltip-selection
+   ;((t (:background "steelblue" :foreground "white"))))
+ ;'(company-tooltip-common
+   ;((((type x)) (:inherit company-tooltip :weight bold))
+    ;(t (:inherit company-tooltip))))
+ ;'(company-tooltip-common-selection
+   ;((((type x)) (:inherit company-tooltip-selection :weight bold))
+    ;(t (:inherit company-tooltip-selection)))))
 
 
 (ido-mode t)
@@ -96,13 +95,6 @@
 				("\\.m$" . mercury-mode))
 			      auto-mode-alist))
 
-;(semantic-mode 1)
-;(global-ede-mode 1)
-;(semantic-load-enable-code-helpers)
-;(global-srecode-minor-mode 1)
-;(global-semantic-idle-summary-mode 1)
-;(global-semantic-show-unmatched-syntax-mode t)
-
 ;; Enable flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'php-mode-hook 'flymake-php-load)
@@ -138,7 +130,6 @@
 (eval-after-load 'ruby-mode '(add-hook 'ruby-mode-hook 'inf-ruby-setup-keybindings))
 (inf-ruby-switch-setup)
 (auto-indent-global-mode)
-
 
 ;; ---------------------------
 ;; -- JS Mode configuration --
