@@ -9,7 +9,9 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " original repos on github
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
+Bundle "mileszs/ack.vim"
+Bundle "pangloss/vim-javascript"
 Bundle 'adimit/prolog.vim'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
@@ -32,7 +34,7 @@ Bundle 'vexxor/phpdoc.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'vim-ruby/vim-ruby'
-"Bundle 'ervandew/supertab'
+Bundle 'ervandew/supertab'
 
 " vim-scripts repos
 "Bundle 'PIV'
@@ -40,13 +42,13 @@ Bundle 'vim-ruby/vim-ruby'
 "Bundle 'FuzzyFinder'
 "Bundle 'HTML-AutoCloseTag'
 Bundle 'VimCalc'
-Bundle 'FastGrep'
 Bundle 'phpcomplete.vim'
 Bundle 'xml.vim'
 Bundle 'camelcasemotion'
 Bundle 'L9'
 Bundle 'preview'
 Bundle 'taglist.vim'
+
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
 
@@ -108,8 +110,6 @@ let Tlist_Ctags_Cmd='/usr/bin/ctags'
 let b:match_ignorecase = 1
 
 let g:session_autosave = 'no'
-
-map <F2> :call FastGrep()<CR> 
 
 "Shortcuts
 nmap <S-Tab> :TlistToggle<CR>
