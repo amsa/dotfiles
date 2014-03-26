@@ -12,6 +12,8 @@ if !filereadable(vundle_readme)
     let iCanHazVundle=0
 endif
 set rtp+=~/.vim/bundle/vundle/
+set rtp+=$GOROOT/misc/vim
+
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
@@ -24,7 +26,7 @@ Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'tpope/vim-fugitive'
-Bundle 'myusuf3/numbers.vim'
+"Bundle 'myusuf3/numbers.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-surround'
@@ -42,6 +44,9 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'ervandew/supertab'
+Bundle 't9md/vim-ruby-xmpfilter'
+Bundle 'sjl/gundo.vim'
+Bundle 'rking/ag.vim'
 
 " vim-scripts repos
 "Bundle 'PIV'
@@ -89,12 +94,18 @@ set visualbell
 set noerrorbells
 set wrapscan
 set noswapfile
-set nobackup
+"set nobackup
+set backup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupskip=/tmp/*,/private/tmp/*
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set writebackup
 set autoindent
 set copyindent
 set showmatch
 set ruler
 set hlsearch
+set wildmenu
 set incsearch
 set number
 set tabstop=4
@@ -103,6 +114,7 @@ set softtabstop=4
 set ignorecase
 set smartcase
 set smarttab
+set lazyredraw
 set expandtab
 set modelines=0
 set backspace=start,indent,eol
@@ -111,9 +123,22 @@ set t_Co=256
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
+"let mapleader=","       " leader is comma
+" allows cursor change in tmux mode
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
 let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
+
+" CtrlP settings
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 "let g:EasyMotion_leader_key = '<Leader>'
 
@@ -140,8 +165,30 @@ map <C-n> :tabnew<CR>
 map <CR> :NumbersToggle<CR> 
 map <leader>c :Calc<CR> 
 
+"seeing is believing key bindings
+let g:xmpfilter_cmd = "seeing_is_believing"
+autocmd FileType ruby nmap <buffer> <F5> <Plug>(seeing_is_believing-run)
+autocmd FileType ruby xmap <buffer> <F5> <Plug>(seeing_is_believing-run)
+autocmd FileType ruby imap <buffer> <F5> <Plug>(seeing_is_believing-run)
+
 cmap w!! %!sudo tee > /dev/null %
+
+" change key bindings
 nnoremap ; :
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+" $/^ doesn't do anything
+"nnoremap $ <nop>
+"nnoremap ^ <nop>
+" highlight last inserted text
+nnoremap gV `[v`]
+nnoremap <leader>u :GundoToggle<CR>
+" open ag.vim
+nnoremap <leader>a :Ag
 
 "autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
