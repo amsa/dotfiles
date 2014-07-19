@@ -19,7 +19,6 @@ Bundle 'gmarik/vundle'
 
 "Bundle 'altercation/vim-colors-solarized' "T-H-E colorscheme
 "Bundle 'Valloric/YouCompleteMe'
-Bundle 'mileszs/ack.vim'
 Bundle "pangloss/vim-javascript"
 Bundle 'adimit/prolog.vim'
 Bundle 'xolox/vim-misc'
