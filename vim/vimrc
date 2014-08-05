@@ -18,7 +18,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 "Bundle 'altercation/vim-colors-solarized' "T-H-E colorscheme
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 Bundle "pangloss/vim-javascript"
 Bundle 'adimit/prolog.vim'
 Bundle 'xolox/vim-misc'
@@ -41,8 +41,8 @@ Bundle 'tpope/vim-rails.git'
 Bundle 'vexxor/phpdoc.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'ervandew/supertab'
+"Bundle 'vim-ruby/vim-ruby'
+"Bundle 'ervandew/supertab'
 Bundle 't9md/vim-ruby-xmpfilter'
 Bundle 'sjl/gundo.vim'
 Bundle 'rking/ag.vim'
@@ -204,7 +204,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
 "improve autocomplete menu color
-highlight Pmenu ctermbg=blue ctermfg=black gui=bold
+highlight Pmenu ctermbg=gray ctermfg=black gui=bold
 
 "Use filetype plugins, e.g. for PHP
 "autocmd FileType php noremap <C-M> :w! <CR>:!/usr/bin/php %<CR>
