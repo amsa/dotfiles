@@ -15,72 +15,61 @@ set rtp+=~/.vim/bundle/vundle/
 set rtp+=$GOROOT/misc/vim
 
 call vundle#rc()
-Bundle 'gmarik/vundle'
 
-"Bundle 'altercation/vim-colors-solarized' "T-H-E colorscheme
-Bundle 'Valloric/YouCompleteMe'
-Bundle "pangloss/vim-javascript"
-Bundle 'adimit/prolog.vim'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-session'
-Bundle 'tsaleh/vim-matchit'
-Bundle 'tpope/vim-fugitive'
-"Bundle 'myusuf3/numbers.vim'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-surround'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'honza/snipmate-snippets'
-Bundle 'garbas/vim-snipmate'
-Bundle 'c9s/bufexplorer'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
-Bundle 'vexxor/phpdoc.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-powerline'
-"Bundle 'vim-ruby/vim-ruby'
-"Bundle 'ervandew/supertab'
-Bundle 't9md/vim-ruby-xmpfilter'
-Bundle 'sjl/gundo.vim'
-Bundle 'rking/ag.vim'
+Plugin 'gmarik/vundle'
+"Plugin 'altercation/vim-colors-solarized' "T-H-E colorscheme
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'pangloss/vim-javascript'
+Plugin 'adimit/prolog.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
+Plugin 'tsaleh/vim-matchit'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-surround'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'c9s/bufexplorer'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'tpope/vim-rails.git'
+Plugin 'vexxor/phpdoc.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 't9md/vim-ruby-xmpfilter'
+Plugin 'sjl/gundo.vim'
+Plugin 'rking/ag.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'fatih/vim-go'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
 
 " vim-scripts repos
-"Bundle 'PIV'
-"Bundle 'Command-T'
-"Bundle 'FuzzyFinder'
-"Bundle 'HTML-AutoCloseTag'
-Bundle 'VimCalc'
-Bundle 'phpcomplete.vim'
-Bundle 'xml.vim'
-Bundle 'camelcasemotion'
-Bundle 'L9'
-Bundle 'preview'
-Bundle 'taglist.vim'
+"Plugin 'PIV'
+"Plugin 'Command-T'
+"Plugin 'FuzzyFinder'
+"Plugin 'HTML-AutoCloseTag'
+Plugin 'VimCalc'
+Plugin 'phpcomplete.vim'
+Plugin 'xml.vim'
+Plugin 'camelcasemotion'
+Plugin 'L9'
+Plugin 'preview'
 
 if iCanHazVundle == 0
-    echo "Installing Bundles, please ignore key map error messages"
+    echo "Installing Plugins, please ignore key map error messages"
     echo ""
     :BundleInstall
 endif
-" non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
 
 filetype plugin indent on     " required!
 "let g:Powerline_symbols = 'fancy'
 "source ~/.vim/bundle/powerline/build/lib/powerline/ext/vim/source_plugin.vim
 "python from powerline.ext.vim import source_plugin; source_plugin()
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+
 syntax on
 set pastetoggle=<F3>
 set ssop-=options
@@ -118,7 +107,7 @@ set expandtab
 set modelines=0
 set backspace=start,indent,eol
 set t_Co=256
-
+set guifont=Monaco:h13
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
@@ -132,6 +121,7 @@ else
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+" theme configs
 let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
@@ -139,29 +129,28 @@ colorscheme solarized
 " CtrlP settings
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
+" easymotion configs
 "let g:EasyMotion_leader_key = '<Leader>'
 
-let g:DisableAutoPHPFolding=1
-let Tlist_Ctags_Cmd='/usr/bin/ctags'
-let b:match_ignorecase = 1
-
+" session configs
 let g:session_autosave = 'no'
 
 "Shortcuts
-nmap <S-Tab> :TlistToggle<CR>
+let g:UltiSnipsExpandTrigger="<C-j>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-b>"
+let g:UltiSnipsEditSplit="vertical"
+
+nmap <F8> :TagbarToggle<CR>
 map <Bar> :NERDTreeToggle<CR>
-"map <F4> :BufExplorerVerticalSplit<CR>
-"vmap <F6> :fold<CR>
-map <C-m> :set rnu<CR>
-map <C-b> :set nu<CR>
+vmap <C-f> :fold<CR>
+nmap <CR> :set rnu!<CR>
 map <C-c> :nohlsearch<CR>
 "map <C-S-l> :set rl<CR>
 "map <C-S-k> :set norl<CR>
 map <C-l> :tabn<CR>
 map <C-h> :tabp<CR>
 map <C-n> :tabnew<CR>
-"map <C-x> :tabclose<CR>
-map <CR> :NumbersToggle<CR> 
 map <leader>c :Calc<CR> 
 
 "seeing is believing key bindings
@@ -193,12 +182,15 @@ nnoremap <leader>a :Ag
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html,xml set listchars-=tab:>.
 
+"php configs
 au BufRead,BufNewFile *.php		set indentexpr= | set smartindent
-".phps files handled like .php
 au BufRead,BufNewFile *.phps		set filetype=php
+au BufNewFile,BufRead *.thor set filetype=ruby
+let g:DisableAutoPHPFolding=1
+let b:match_ignorecase = 1
+
 
 "ruby configs
-"autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
@@ -207,12 +199,14 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 highlight Pmenu ctermbg=gray ctermfg=black gui=bold
 
 "Use filetype plugins, e.g. for PHP
-"autocmd FileType php noremap <C-M> :w! <CR>:!/usr/bin/php %<CR>
 inoremap <C-K> <ESC> :call PhpDocSingle()<CR>
 nnoremap <C-K> :call PhpDocSingle()<CR>
 vnoremap <C-K> :call PhpDocRange()<CR>
-let g:pdv_cfg_Author = "Amin Saeedi, <amin.w3dev@gmail.com>"
-"let g:pdv_cfg_Copyright = "2011 Hippo Project"
-"let g:pdv_cfg_Package = "Hippo Server"
+let g:pdv_cfg_Author = "Amin Saeidi, <amin.w3dev@gmail.com>"
+"let g:pdv_cfg_Copyright = ""
+"let g:pdv_cfg_Package = ""
 "let g:pdv_cfg_License = ""
-let g:pdv_cfg_Version = "0.0.1"
+"let g:pdv_cfg_Version = "0.0.1"
+
+" YCM configs
+let g:ycm_auto_trigger = 1
