@@ -97,8 +97,8 @@
 (autoload 'mercury-mode "prolog" "Major mode for editing Mercury programs." t)
 (setq prolog-system 'swi)
 (setq auto-mode-alist (append '(("\\.pl$" . prolog-mode)
-				("\\.m$" . mercury-mode))
-			      auto-mode-alist))
+                ("\\.m$" . mercury-mode))
+                  auto-mode-alist))
 
 ;; Enable flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -107,7 +107,7 @@
 ;; Go mode hooks
 (add-hook 'before-save-hook 'gofmt-before-save)
 (add-hook 'go-mode-hook (lambda ()
-			  (local-set-key (kbd "C-c i") 'go-goto-imports)))
+              (local-set-key (kbd "C-c i") 'go-goto-imports)))
 
 ;; ------------
 ;; -- Macros --
@@ -134,7 +134,7 @@
 (autoload 'inf-ruby-setup-keybindings "inf-ruby" "" t) 
 (eval-after-load 'ruby-mode '(add-hook 'ruby-mode-hook 'inf-ruby-setup-keybindings))
 (inf-ruby-switch-setup)
-(auto-indent-global-mode)
+;; (auto-indent-global-mode)
 
 ;; ---------------------------
 ;; -- JS Mode configuration --
@@ -154,3 +154,47 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; org-mode configs
+(add-hook 'org-mode-hook (lambda ()
+              (local-set-key (kbd "C-c C-p") 'org-export-as-pdf-and-open)))
+
+(setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.9/libexec/ditaa0_9.jar")
+(setq org-plantuml-jar-path "/usr/local/Cellar/plantuml/8002/plantuml.8002.jar")
+
+(add-hook 'org-babel-after-execute-hook 'bh/display-inline-images 'append)
+
+; Make babel results blocks lowercase
+(setq org-babel-results-keyword "results")
+
+(defun bh/display-inline-images ()
+  (condition-case nil
+      (org-display-inline-images)
+    (error nil)))
+
+(org-babel-do-load-languages
+ (quote org-babel-load-languages)
+ (quote ((emacs-lisp . t)
+         (dot . t)
+         (ditaa . t)
+         (R . t)
+         (python . t)
+         (ruby . t)
+         (gnuplot . t)
+         (clojure . t)
+         (sh . t)
+         (ledger . t)
+         (org . t)
+         (plantuml . t)
+         (latex . t))))
+
+; Do not prompt to confirm evaluation
+; This may be dangerous - make sure you understand the consequences
+; of setting this -- see the docstring for details
+(setq org-confirm-babel-evaluate nil)
+
+; Use fundamental mode when editing plantuml blocks with C-c '
+(add-to-list 'org-src-lang-modes (quote ("plantuml" . fundamental)))
+
+;; Latex fontify export
+(setq org-latex-listings t)
