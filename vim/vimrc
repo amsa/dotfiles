@@ -17,7 +17,6 @@ set rtp+=$GOROOT/misc/vim
 call vundle#rc()
 
 Plugin 'gmarik/vundle'
-"Plugin 'altercation/vim-colors-solarized' "T-H-E colorscheme
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'pangloss/vim-javascript'
 Plugin 'adimit/prolog.vim'
@@ -43,13 +42,18 @@ Plugin 'sjl/gundo.vim'
 Plugin 'rking/ag.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'fatih/vim-go'
+" Ultrasnip (snippets)
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+"Haskell Plugins
+Plugin 'dag/vim2hs'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'eagletmt/neco-ghc'
 
 
 " vim-scripts repos
 "Plugin 'PIV'
-"Plugin 'Command-T'
 "Plugin 'FuzzyFinder'
 "Plugin 'HTML-AutoCloseTag'
 Plugin 'VimCalc'
@@ -108,8 +112,9 @@ set modelines=0
 set backspace=start,indent,eol
 set t_Co=256
 set guifont=Monaco:h13
-set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set nolist  "hide invisible characters
+"set list
+"set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 "let mapleader=","       " leader is comma
 " allows cursor change in tmux mode
@@ -141,8 +146,8 @@ let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 let g:UltiSnipsEditSplit="vertical"
 
-nmap <F8> :TagbarToggle<CR>
 map <Bar> :NERDTreeToggle<CR>
+nmap <F8> :TagbarToggle<CR>
 vmap <C-f> :fold<CR>
 nmap <CR> :set rnu!<CR>
 map <C-c> :nohlsearch<CR>
@@ -210,3 +215,4 @@ let g:pdv_cfg_Author = "Amin Saeidi, <amin.w3dev@gmail.com>"
 
 " YCM configs
 let g:ycm_auto_trigger = 1
+let g:ycm_semantic_triggers = {'haskell' : ['.']}
