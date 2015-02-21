@@ -18,8 +18,8 @@ call vundle#rc()
 
 Plugin 'gmarik/vundle'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'pangloss/vim-javascript'
-Plugin 'adimit/prolog.vim'
+"Plugin 'pangloss/vim-javascript'
+"Plugin 'adimit/prolog.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'tsaleh/vim-matchit'
@@ -34,7 +34,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'tpope/vim-rails.git'
-Plugin 'vexxor/phpdoc.vim'
+"Plugin 'vexxor/phpdoc.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 't9md/vim-ruby-xmpfilter'
@@ -42,15 +42,23 @@ Plugin 'sjl/gundo.vim'
 Plugin 'rking/ag.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'fatih/vim-go'
+Bundle 'derekwyatt/vim-scala'
+
 " Ultrasnip (snippets)
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+
 "Haskell Plugins
 Plugin 'dag/vim2hs'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'eagletmt/neco-ghc'
 
+"Rust pluginn
+Plugin 'wting/rust.vim'
+
+"multi-cursors
+Plugin 'terryma/vim-multiple-cursors'
 
 " vim-scripts repos
 "Plugin 'PIV'
@@ -75,7 +83,6 @@ filetype plugin indent on     " required!
 "python from powerline.ext.vim import source_plugin; source_plugin()
 
 syntax on
-set pastetoggle=<F3>
 set ssop-=options
 set encoding=utf-8
 set history=512
@@ -113,7 +120,9 @@ set backspace=start,indent,eol
 set t_Co=256
 set guifont=Monaco:h13
 set nolist  "hide invisible characters
-"set list
+
+"show invisible characters
+"set list    
 "set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 "let mapleader=","       " leader is comma
@@ -130,6 +139,8 @@ endif
 let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
+"improve autocomplete menu color
+highlight Pmenu ctermbg=gray ctermfg=black gui=bold
 
 " CtrlP settings
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
@@ -140,11 +151,18 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 " session configs
 let g:session_autosave = 'no'
 
-"Shortcuts
+" ULtrasnips configs
 let g:UltiSnipsExpandTrigger="<C-j>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 let g:UltiSnipsEditSplit="vertical"
+
+" YCM configs
+let g:ycm_auto_trigger = 1
+let g:ycm_semantic_triggers = {'haskell' : ['.']}
+
+" custom key bindings
+cmap w!! %!sudo tee > /dev/null %
 
 map <Bar> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
@@ -157,16 +175,7 @@ map <C-l> :tabn<CR>
 map <C-h> :tabp<CR>
 map <C-n> :tabnew<CR>
 map <leader>c :Calc<CR> 
-
-"seeing is believing key bindings
-let g:xmpfilter_cmd = "seeing_is_believing"
-autocmd FileType ruby nmap <buffer> <F5> <Plug>(seeing_is_believing-run)
-autocmd FileType ruby xmap <buffer> <F5> <Plug>(seeing_is_believing-run)
-autocmd FileType ruby imap <buffer> <F5> <Plug>(seeing_is_believing-run)
-
-cmap w!! %!sudo tee > /dev/null %
-
-" change key bindings
+" go to command mode with ;
 nnoremap ; :
 " move vertically by visual line
 nnoremap j gj
@@ -182,9 +191,13 @@ nnoremap gV `[v`]
 nnoremap <leader>u :GundoToggle<CR>
 " open ag.vim
 nnoremap <leader>a :Ag
+"
+"seeing is believing key bindings
+let g:xmpfilter_cmd = "seeing_is_believing"
+autocmd FileType ruby nmap <buffer> <F5> <Plug>(seeing_is_believing-run)
+autocmd FileType ruby xmap <buffer> <F5> <Plug>(seeing_is_believing-run)
+autocmd FileType ruby imap <buffer> <F5> <Plug>(seeing_is_believing-run)
 
-"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-"autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html,xml set listchars-=tab:>.
 
 "php configs
@@ -194,25 +207,30 @@ au BufNewFile,BufRead *.thor set filetype=ruby
 let g:DisableAutoPHPFolding=1
 let b:match_ignorecase = 1
 
-
 "ruby configs
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
-"improve autocomplete menu color
-highlight Pmenu ctermbg=gray ctermfg=black gui=bold
+" automatic paste mode handling
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
 
-"Use filetype plugins, e.g. for PHP
-inoremap <C-K> <ESC> :call PhpDocSingle()<CR>
-nnoremap <C-K> :call PhpDocSingle()<CR>
-vnoremap <C-K> :call PhpDocRange()<CR>
-let g:pdv_cfg_Author = "Amin Saeidi, <amin.w3dev@gmail.com>"
-"let g:pdv_cfg_Copyright = ""
-"let g:pdv_cfg_Package = ""
-"let g:pdv_cfg_License = ""
-"let g:pdv_cfg_Version = "0.0.1"
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
 
-" YCM configs
-let g:ycm_auto_trigger = 1
-let g:ycm_semantic_triggers = {'haskell' : ['.']}
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
