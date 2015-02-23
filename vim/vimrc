@@ -165,7 +165,7 @@ let g:ycm_semantic_triggers = {'haskell' : ['.']}
 cmap w!! %!sudo tee > /dev/null %
 
 map <Bar> :NERDTreeToggle<CR>
-nmap <F8> :TagbarToggle<CR>
+nmap <leader>t :TagbarToggle<CR>
 vmap <C-f> :fold<CR>
 nmap <CR> :set rnu!<CR>
 map <C-c> :nohlsearch<CR>
