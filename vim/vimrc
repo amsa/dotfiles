@@ -18,11 +18,10 @@ call vundle#rc()
 
 Plugin 'gmarik/vundle'
 Plugin 'Valloric/YouCompleteMe'
-"Plugin 'pangloss/vim-javascript'
-"Plugin 'adimit/prolog.vim'
+Plugin 'pangloss/vim-javascript'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
-Plugin 'tsaleh/vim-matchit'
+Plugin 'tmhedberg/matchit'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/syntastic'
@@ -35,6 +34,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'tpope/vim-rails.git'
 "Plugin 'vexxor/phpdoc.vim'
+Plugin 'godlygeek/tabular'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 't9md/vim-ruby-xmpfilter'
@@ -42,11 +42,13 @@ Plugin 'sjl/gundo.vim'
 Plugin 'rking/ag.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'fatih/vim-go'
-Bundle 'derekwyatt/vim-scala'
 
 " Ultrasnip (snippets)
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+
+" Scala Plugin
+"Bundle 'derekwyatt/vim-scala'
 
 "Haskell Plugins
 Plugin 'dag/vim2hs'
@@ -55,7 +57,7 @@ Plugin 'Shougo/vimproc.vim'
 Plugin 'eagletmt/neco-ghc'
 
 "Rust pluginn
-Plugin 'wting/rust.vim'
+"Plugin 'wting/rust.vim'
 
 "multi-cursors
 Plugin 'terryma/vim-multiple-cursors'
@@ -64,7 +66,7 @@ Plugin 'terryma/vim-multiple-cursors'
 "Plugin 'PIV'
 "Plugin 'FuzzyFinder'
 "Plugin 'HTML-AutoCloseTag'
-Plugin 'VimCalc'
+"Plugin 'VimCalc'
 Plugin 'phpcomplete.vim'
 Plugin 'xml.vim'
 Plugin 'camelcasemotion'
