@@ -17,6 +17,9 @@
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     ;; (git :variables
+     ;;      git-gutter-use-fringe t)
+     ;; syntax-checking
      extra-langs
      auto-completion
      osx
@@ -25,13 +28,13 @@
      emacs-lisp
      javascript
      colors
-     ;; (git :variables
-     ;;      git-gutter-use-fringe t)
+     games
      spotify
      markdown
      org
-     shell
-     ;; syntax-checking
+     search-engine
+     (shell :variables
+            shell-default-term-shell "/bin/zsh")
      )
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
@@ -160,8 +163,8 @@ layers configuration."
   (global-linum-mode)
   (global-hl-line-mode -1)
   (evil-leader/set-key "o SPC" 'spotify-playpause)
-  (evil-leader/set-key "o>" 'spotify-next)
-  (evil-leader/set-key "o<" 'spotify-previous)
+  (evil-leader/set-key "o >" 'spotify-next)
+  (evil-leader/set-key "o <" 'spotify-previous)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
