@@ -18,7 +18,6 @@ call vundle#rc()
 
 Plugin 'gmarik/vundle'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'pangloss/vim-javascript'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'tmhedberg/matchit'
@@ -33,7 +32,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'tpope/vim-rails.git'
-"Plugin 'vexxor/phpdoc.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-powerline'
@@ -47,27 +45,40 @@ Plugin 'fatih/vim-go'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
-" Scala Plugin
+" Javascript
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'digitaltoad/vim-jade'
+"Plugin 'wookiehangover/jshint.vim'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'einars/js-beautify'
+
+
+" Scala
 "Bundle 'derekwyatt/vim-scala'
 
-"Haskell Plugins
+"Haskell
 Plugin 'dag/vim2hs'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'eagletmt/neco-ghc'
 
-"Rust pluginn
-"Plugin 'wting/rust.vim'
-
-"multi-cursors
-Plugin 'terryma/vim-multiple-cursors'
+" PHP
+"Plugin 'vexxor/phpdoc.vim'
+Bundle 'Shougo/unite.vim'
+Bundle 'm2mdas/phpcomplete-extended'
+Bundle 'StanAngeloff/php.vim'
 
 " vim-scripts repos
+"Rust
+"Plugin 'wting/rust.vim'
+
+" Multi-cursors
+Plugin 'terryma/vim-multiple-cursors'
+
 "Plugin 'PIV'
 "Plugin 'FuzzyFinder'
 "Plugin 'HTML-AutoCloseTag'
 "Plugin 'VimCalc'
-Plugin 'phpcomplete.vim'
 Plugin 'xml.vim'
 Plugin 'camelcasemotion'
 Plugin 'L9'
@@ -162,7 +173,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 " YCM configs
 let g:ycm_auto_trigger = 1
-let g:ycm_semantic_triggers = {'haskell' : ['.']}
+let g:ycm_semantic_triggers = {'haskell': ['.']}
 
 " custom key bindings
 cmap w!! %!sudo tee > /dev/null %
@@ -202,11 +213,12 @@ autocmd FileType ruby xmap <buffer> <F5> <Plug>(seeing_is_believing-run)
 autocmd FileType ruby imap <buffer> <F5> <Plug>(seeing_is_believing-run)
 
 autocmd FileType html,xml set listchars-=tab:>.
+autocmd FileType javascript noremap <buffer> <C-f> :call JsBeautify()<CR>
 
 "php configs
 au BufRead,BufNewFile *.php		set indentexpr= | set smartindent
 au BufRead,BufNewFile *.phps		set filetype=php
-au BufNewFile,BufRead *.thor set filetype=ruby
+autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 let g:DisableAutoPHPFolding=1
 let b:match_ignorecase = 1
 
@@ -214,6 +226,7 @@ let b:match_ignorecase = 1
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+au BufNewFile,BufRead *.thor set filetype=ruby
 
 " automatic paste mode handling
 function! WrapForTmux(s)
