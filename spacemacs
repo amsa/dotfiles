@@ -162,6 +162,13 @@ before layers configuration."
 layers configuration."
   (global-linum-mode)
   (global-hl-line-mode -1)
+
+  ;; moving shortcuts
+  (bind-keys ("M-j" . move-line-down)
+             ("M-k" . move-line-up)
+             ("M-=" . spacemacs/evil-numbers-increase))
+
+  ;; custom key bindings
   (evil-leader/set-key "o SPC" 'spotify-playpause)
   (evil-leader/set-key "o >" 'spotify-next)
   (evil-leader/set-key "o <" 'spotify-previous)
