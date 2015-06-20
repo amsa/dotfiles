@@ -20,19 +20,22 @@
      ;; (git :variables
      ;;      git-gutter-use-fringe t)
      ;; syntax-checking
-     extra-langs
      auto-completion
-     osx
      better-defaults
-     git
-     emacs-lisp
-     javascript
      colors
+     emacs-lisp
+     extra-langs
+     eyebrowse
      games
-     spotify
+     git
+     javascript
      markdown
      org
+     osx
      search-engine
+     semantic
+     spotify
+     syntax-checking
      (shell :variables
             shell-default-term-shell "/bin/zsh")
      )
@@ -152,6 +155,9 @@ before layers configuration."
    ;; specified with an installed package.
    ;; Not used for now.
    dotspacemacs-default-package-repository nil
+
+   ;; Enable github
+   git-enable-github-support t
    )
   ;; User initialization goes here
   )
@@ -162,9 +168,20 @@ before layers configuration."
 layers configuration."
   (global-linum-mode)
   (global-hl-line-mode -1)
+
+  ;; moving shortcuts
+  (bind-keys ("M-j" . move-line-down)
+             ("M-k" . move-line-up)
+             ("M-=" . spacemacs/evil-numbers-increase))
+
+  ;; custom key bindings
   (evil-leader/set-key "o SPC" 'spotify-playpause)
   (evil-leader/set-key "o >" 'spotify-next)
   (evil-leader/set-key "o <" 'spotify-previous)
+
+  (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+  (semantic-mode 1)
+  (require 'stickyfunc-enhance)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
