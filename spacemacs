@@ -22,12 +22,14 @@
      ;; syntax-checking
      auto-completion
      better-defaults
-     colors
+     dockerfile
      emacs-lisp
      extra-langs
      eyebrowse
      games
      git
+     github
+     go
      javascript
      markdown
      org
@@ -69,7 +71,7 @@ before layers configuration."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed.
-   dotspacemacs-startup-banner nil
+   dotspacemacs-startup-banner `official
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'."
    dotspacemacs-startup-lists '(recents projects)
@@ -155,9 +157,6 @@ before layers configuration."
    ;; specified with an installed package.
    ;; Not used for now.
    dotspacemacs-default-package-repository nil
-
-   ;; Enable github
-   git-enable-github-support t
    )
   ;; User initialization goes here
   )
