@@ -17,7 +17,7 @@ set rtp+=$GOROOT/misc/vim
 call vundle#rc()
 
 Plugin 'gmarik/vundle'
-Plugin 'Valloric/YouCompleteMe'
+"xPlugin 'Valloric/YouCompleteMe'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'tmhedberg/matchit'
